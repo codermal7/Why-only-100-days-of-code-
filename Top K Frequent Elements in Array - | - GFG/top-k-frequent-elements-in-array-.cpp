@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
   public:
     vector<int> topK(vector<int>& nums, int k) {
-        map<int,int> mpp;int N=nums.size();
+        unordered_map<int,int> mpp;int N=nums.size();
         priority_queue<pair<int,int>> pq;
         for(int i=0;i<N;i++)
         {
