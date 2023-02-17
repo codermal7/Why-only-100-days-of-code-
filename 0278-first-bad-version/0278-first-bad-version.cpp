@@ -10,6 +10,6 @@ public:
             if(isBadVersion(mid))  end=mid;
             else  start=mid+1;
         }
-        return start;
+        return end;
     }
 };
