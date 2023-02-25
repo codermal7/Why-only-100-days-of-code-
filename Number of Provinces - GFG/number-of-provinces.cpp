@@ -8,43 +8,43 @@ using namespace std;
 
 class Solution {
     private:
-    void dfs(int node,vector<int> adjls[],int vis[])
+    void dfs(int node,vector<int> adj[], int vis[])
     {
-        vis[node]=1;
-        for(auto it: adjls[node])
-        {
-            if(!vis[it])
-            {
-                dfs(it,adjls,vis);
-            }
-        }
+      vis[node]=1;
+      for(auto it:adj[node])
+      {
+          if(!vis[it])
+          {
+            dfs(it,adj,vis);
+          }
+      }
     }
     public:
     int numProvinces(vector<vector<int>> adj, int V) {
-        int vis[V]={0};vector<int> adjls[V];int count=0;
+        vector<int> ad[V];int c=0;
         for(int i=0;i<V;i++)
         {
             for(int j=0;j<V;j++)
             {
-                if(adj[i][j] == 1 && i != j) 
+                if(adj[i][j]==1 && i!=j)
                 {
-                    adjls[i].push_back(j);
-                    adjls[j].push_back(i);
+                    ad[i].push_back(j);
+                    ad[j].push_back(i);
                 }
             }
         }
+        int vis[V]={0};
         for(int i=0;i<V;i++)
         {
-            if(vis[i]==0)
+            if(!vis[i])
             {
-                count++;
-                dfs(i,adjls,vis);
+                c++;
+                dfs(i,ad,vis);
             }
         }
-        return count;
+        return c;    
     }
 };
-
 
 //{ Driver Code Starts.
 
