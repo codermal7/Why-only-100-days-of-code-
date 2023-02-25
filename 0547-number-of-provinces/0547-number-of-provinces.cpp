@@ -22,7 +22,7 @@ class Solution {
                 if(isConnected[i][j]==1 && i!=j)
                 {
                     ad[i].push_back(j);
-                    ad[j].push_back(i);
+                    // ad[j].push_back(i);
                 }
             }
         }
