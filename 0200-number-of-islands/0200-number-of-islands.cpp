@@ -33,7 +33,6 @@ void bfs(int row,int col,vector<vector<int>> &vis,vector<vector<char>> grid,int 
             {
                 if(!vis[i][j] && grid[i][j]=='1')
                 {
-                    grid[i][j] = '0';
                     cnt++;
                     bfs(i,j,vis,grid,n,m);
                 }
