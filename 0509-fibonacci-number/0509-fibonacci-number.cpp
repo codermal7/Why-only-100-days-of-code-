@@ -1,8 +1,16 @@
 class Solution {
 public:
-    int fib(int n) {
+    int disp(vector<int> &dp,int n)
+    {
         if(n<=1)
             return n;
-        return fib(n-1)+fib(n-2);
+        if(dp[n]!=-1)
+            return dp[n];
+        return (dp[n]=disp(dp,n-1)+disp(dp,n-2));
+    }
+    
+    int fib(int n) {
+        vector<int> dp(n+1,-1);
+        return disp(dp,n);
     }
 };
