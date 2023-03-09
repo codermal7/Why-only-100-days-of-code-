@@ -7,45 +7,33 @@ using namespace std;
 
 // } Driver Code Ends
 // User function Template for C++
+
 long long int MOD=1e9+7;
-
 long long int dp[100001];
-
 class Solution {
-
+    
   public:
-
     long long int topDown(int n) {
-
-      if(n==0) return dp[0]=0;
-
-      if(n==1) return dp[1]=1;
-
-      if(dp[n]!=-1) return dp[n];
-
-      return (dp[n]=topDown(n-1)+topDown(n-2))%MOD;
-
+        if(n==0)
+        return dp[0]=0;
+        if(n==1)
+        return dp[1]=1;
+        if(dp[n]!=-1)
+        return dp[n];
+        return (dp[n]=topDown(n-1)+topDown(n-2))%MOD;
     }
-
     long long int bottomUp(int n) {
-
-        vector<long long int> dp(n+1);
-
-        dp[0]=0;
-
-        dp[1]=1;
-
-        for(int i=2;i<=n;i++){
-
-            dp[i]=(dp[i-1]+dp[i-2])%MOD;
-
+        vector<long long int> dp(n+1,-1);
+        dp[0]= 0;
+        dp[1]= 1;
+        for(int i=2; i<=n; i++)
+        {
+            dp[i] = (dp[i-1]+ dp[i-2])%MOD;
         }
-
         return dp[n]%MOD;
-
     }
-
 };
+
 
 //{ Driver Code Starts.
 
