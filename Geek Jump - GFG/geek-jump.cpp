@@ -26,18 +26,28 @@ class Solution {
     {
         // vector<int> dp(n+1,-1);
         // return disp(n-1, height, dp);
-        vector<int> dp(n,0);
-        dp[0]=0;int left,right;
+        // vector<int> dp(n,0);
+        // dp[0]=0;int left,right;
+        // for(int i=1;i<n;i++)
+        // {
+        //     left=dp[i-1]+abs(height[i]-height[i-1]);
+        //     right=INT_MAX;
+        //     if(i>1)
+        //     right=dp[i-2]+abs(height[i]-height[i-2]);
+        //     dp[i]=min(left,right);
+        // }
+        // return dp[n-1];
+        int a=0,b,l,r;
         for(int i=1;i<n;i++)
         {
-            left=dp[i-1]+abs(height[i]-height[i-1]);
-            right=INT_MAX;
+            l=a+abs(height[i]-height[i-1]);
+            r=INT_MAX;
             if(i>1)
-            right=dp[i-2]+abs(height[i]-height[i-2]);
-            dp[i]=min(left,right);
+            r=b+abs(height[i]-height[i-2]);
+            b=a;
+            a=min(l,r);
         }
-        return dp[n-1];
-        
+        return a;
     }
 };
 
