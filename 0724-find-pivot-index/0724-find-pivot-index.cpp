@@ -6,12 +6,10 @@ public:
         {
             sum+=nums[i];
         }
-        cout<<sum<<endl;
         int rsum=sum;
         for(int i=0;i<n;i++)
         {
             rsum-=nums[i];
-            cout<<"lsum "<<lsum<<" rsum "<<rsum<<endl;
             if(lsum==rsum)
                 return i;
             lsum+=nums[i];
