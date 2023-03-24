@@ -2,10 +2,6 @@ class Solution {
 public:
     int minReorder(int n, vector<vector<int>>& connections) {
         
-        //for every city store the adjacent city along with direction 
-        //to store the direction we use positive indicating a road from a to b for a
-        //we use negative indicating there is a road from b to a for a
-        
         vector<vector<int>> adjCities(n);
         vector<bool> visited(n,false);
         for(int i=0;i<connections.size();i++)
@@ -16,8 +12,6 @@ public:
             adjCities[city2].push_back(-city1);
         }
         
-        //start dfs from city  0 
-        //when ever you found a positive then it need to be reversed
         int count=0;
         reorderPaths(0,adjCities,count,visited);
         return count;
