@@ -19,7 +19,7 @@ public:
     int maxProfit(vector<int>& prices) {
         
         int n=prices.size(); 
-        vector<vector<int>> v(n,vector<int> (21,-1));
+        vector<vector<int>> v(n,vector<int> (2,-1));
         //passing here buy=1 because we will first buy then sell
         //we can do atmost k=1 transaction
         return find(prices,0,1,1,v);
