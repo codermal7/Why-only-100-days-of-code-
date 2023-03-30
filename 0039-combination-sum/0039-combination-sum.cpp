@@ -17,6 +17,7 @@ class Solution {
     }
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
         vector<vector<int>> ans;
         vector<int> currComb;
         combination(candidates, target, currComb, 0, 0, ans);
