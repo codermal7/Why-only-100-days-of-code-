@@ -1,26 +1,25 @@
 class Solution {
-    void combination(vector<int>& candidates, int target, vector<int> currComb, int currSum, int currIndex, vector<vector<int>>& ans){
-        if(currSum>target) return; //backtrack
-        if(currSum==target){
-            ans.push_back(currComb); //store the solution and backtrack
+public:
+    vector<vector<int>>ans;
+    void help(int i,int t,vector<int>&c,vector<int>&vec){
+        if(t==0){
+            ans.push_back(vec);
             return;
         }
-        
-        for(int i=currIndex; i<candidates.size(); i++){ //try all possible options for the next level
-            currComb.push_back(candidates[i]); //put 1 option into the combination
-            currSum+=candidates[i];
-            combination(candidates, target, currComb, currSum, i, ans); //try with this combination, whether it gives a solution or not.
-            currComb.pop_back(); //when this option backtrack to here, remove this and go on to the next option.
-            currSum-=candidates[i];
+        if(t<0){
+            return;
         }
-        
+        if(i==c.size()){
+            return;
+        }
+        help(i+1,t,c,vec); // if ith ele is ignored
+        vec.push_back(c[i]);
+        help(i,t-c[i],c,vec);// if ith ele is not ignored
+        vec.pop_back();
     }
-public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        sort(candidates.begin(),candidates.end());
-        vector<vector<int>> ans;
-        vector<int> currComb;
-        combination(candidates, target, currComb, 0, 0, ans);
+    vector<vector<int>> combinationSum(vector<int>& c, int t) {
+        vector<int>vec;
+        help(0,t,c,vec);
         return ans;
     }
 };
