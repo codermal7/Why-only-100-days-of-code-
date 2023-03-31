@@ -11,13 +11,11 @@ public:
                     if(a[ti][tj] == 'A') return 1;
                 }
             }
-
             return 0;
         }
 
         if(dp[i][j][k] != -1) return dp[i][j][k];
-        int res = 0;
-        int flag = 0;
+        int res = 0,flag = 0;
         for(int indx = i+1; indx <= n-1; indx++){
             if(flag == 0){
                 for(int tj = j; tj <= m-1; tj++){
