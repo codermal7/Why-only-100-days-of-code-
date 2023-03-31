@@ -5,7 +5,6 @@ public:
     vector<vector<vector<int>>> dp;
     int f(vector<string> &a, int k, int i, int j){
         
-        // base cases 
         if(k == 1){
             for(int ti = i; ti <= n-1; ti++){
                 for(int tj = j; tj <= m-1; tj++){
@@ -17,14 +16,9 @@ public:
         }
 
         if(dp[i][j][k] != -1) return dp[i][j][k];
-
-
         int res = 0;
-        // horizontal cut 
         int flag = 0;
         for(int indx = i+1; indx <= n-1; indx++){
-            // finding whether an apple is there 
-
             if(flag == 0){
                 for(int tj = j; tj <= m-1; tj++){
                     if(a[indx-1][tj] == 'A'){
@@ -33,18 +27,14 @@ public:
                     }
                 }
             }
-
             if(flag){
                 res =  (res + f(a, k-1, indx, j))%mod;
             }
 
         }
 
-        // vertical cut 
         flag = 0;
         for(int indx = j+1; indx <= m-1; indx++){
-            // finding whether an apple is there 
-
             if(flag == 0){
                 for(int ti = i; ti  <= n-1; ti++){
                     if(a[ti][indx-1] == 'A'){
@@ -53,7 +43,6 @@ public:
                     }
                 }
             }
-
             if(flag){
                 res =  (res + f(a, k-1, i, indx))%mod;
             }
