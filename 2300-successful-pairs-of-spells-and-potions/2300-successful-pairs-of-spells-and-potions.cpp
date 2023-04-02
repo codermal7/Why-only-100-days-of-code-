@@ -1,27 +1,45 @@
+// class Solution {
+// public:
+//     vector<int> successfulPairs(vector<int> &spells, vector<int> &potions, long long success) {
+//         int len = spells.size(), maxVal = *max_element(begin(spells), end(spells)) + 1, precomputed[maxVal];
+//         long long threshold;
+//         double spellVal;
+//         vector<int> res(len);
+//         fill(precomputed, precomputed + maxVal, -1);
+//         sort(begin(potions), end(potions));
+//         for (int i = 0, tmpSpell; i < len; i++) {
+//             tmpSpell = spellVal = spells[i];
+//             if (precomputed[tmpSpell] != -1) {
+//                 res[i] = precomputed[tmpSpell];
+//                 continue;
+//             }
+//             threshold = (success + spellVal - 1) / spellVal;
+//             res[i] = precomputed[tmpSpell] = end(potions) - lower_bound(begin(potions), end(potions), threshold);
+//         }
+//         return res;
+//     }
+// };
 class Solution {
 public:
     vector<int> successfulPairs(vector<int> &spells, vector<int> &potions, long long success) {
-        // suppport variables
-        int len = spells.size(), maxVal = *max_element(begin(spells), end(spells)) + 1, precomputed[maxVal];
+        int len = spells.size(), maxVal = *max_element(begin(spells), end(spells)) + 1;
         long long threshold;
         double spellVal;
         vector<int> res(len);
-        // preparing precomputed
-        fill(precomputed, precomputed + maxVal, -1);
-        // preparing potions for the BS
+        vector<int> precomputed(maxVal, -1);
         sort(begin(potions), end(potions));
-        for (int i = 0, tmpSpell; i < len; i++) {
-            tmpSpell = spellVal = spells[i];
-            // checking if we already had computed a result for that value
+        
+        for (int i = 0; i < len; ++i) {
+            int tmpSpell = spells[i];
             if (precomputed[tmpSpell] != -1) {
                 res[i] = precomputed[tmpSpell];
-                continue;
+            } else {
+                spellVal = static_cast<double>(tmpSpell);
+                threshold = (success + spellVal - 1) / spellVal;
+                res[i] = precomputed[tmpSpell] = end(potions) - lower_bound(begin(potions), end(potions), threshold);
             }
-            // computing the threshold value we need to get in potions, if we did not see if before
-            threshold = (success + spellVal - 1) / spellVal;
-            // adding to res how many such values are in potions through BS
-            res[i] = precomputed[tmpSpell] = end(potions) - lower_bound(begin(potions), end(potions), threshold);
         }
+        
         return res;
     }
 };
