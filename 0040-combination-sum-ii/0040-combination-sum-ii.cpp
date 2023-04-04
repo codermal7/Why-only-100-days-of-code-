@@ -14,9 +14,6 @@ public:
             }
             lv.push_back(candidates[i]);
             search(vec, lv, candidates, target-candidates[i], i+1);
-
-            // loai bo cac tham so khong thoa man trong vector<int>
-            // lv.size() - 1 : có nghĩa là(số lượng phần tử trong vector<int> sẽ bị loại bỏ đi 1 phần từ, đê xét tiếp các phần tử thoải mã điều kiện cần thêm vào so sánh với target cần )
             lv.pop_back(); 
         }
     }
