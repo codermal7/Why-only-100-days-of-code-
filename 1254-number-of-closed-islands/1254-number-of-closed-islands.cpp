@@ -1,37 +1,28 @@
 class Solution {
 public:
-    
-    int f=0;
-    void helper(int i,int j,int n,int c,int oldc,vector<vector<int>>& grid)
-    {
-        if(i<0 || i>=n || j<0 || j>=c || grid[i][j]!=oldc)
-            return ;
-        if(i==0 || i==n-1 || j==0 || j==c-1)
-            f=1;
-        grid[i][j]=-1;
-        helper(i+1,j,n,c,oldc,grid);
-        helper(i-1,j,n,c,oldc,grid);
-        helper(i,j+1,n,c,oldc,grid);
-        helper(i,j-1,n,c,oldc,grid);
-    }
-    
-    int closedIsland(vector<vector<int>>& grid) 
-    {
+    int closedIsland(vector<vector<int>>& grid) {
+        int rows = grid.size(), cols = grid[0].size(), count = 0;
         
-        int c=0;
-        for(int i=0;i<grid.size();i++)
-        {
-            for(int j=0;j<grid[i].size();j++)
-            {
-                f=0;
-                if(grid[i][j]==0)
-                {
-                    helper(i,j,grid.size(),grid[i].size(),grid[i][j],grid);
-                    if(f==0)
-                        c+=1;
+        function<bool(int, int)> dfs = [&](int i, int j) {
+            if (i < 0 || j < 0 || i >= rows || j >= cols) {
+                return false;
+            }
+            if (grid[i][j] == 1) {
+                return true;
+            }
+            grid[i][j] = 1; // mark as visited
+            bool left = dfs(i, j-1), right = dfs(i, j+1), up = dfs(i-1, j), down = dfs(i+1, j);
+            return left && right && up && down;
+        };
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == 0 && dfs(i, j)) {
+                    count++;
                 }
             }
         }
-        return c;
+        
+        return count;
     }
 };
