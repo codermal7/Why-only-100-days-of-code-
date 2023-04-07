@@ -1,44 +1,35 @@
 class Solution {
 public:
-    void dfs(int row,int col,vector<vector<int>> &grid){
-        grid[row][col] = 0;
-        int delr[] = {0,0,-1,1};
-        int delc[] = {-1,1,0,0};
+    void dfs(vector<vector<int>>& grid,int i,int j,int m,int n){
+        if(i<0 || i >=m || j<0 || j>=n || grid[i][j] == 0 || grid[i][j] == 2) return;
+        grid[i][j] = 2;
+        int ai[] = {0,1,0,-1};
+        int aj[] = {1,0,-1,0};
 
-        for(int i = 0;i<4;i++){
-            int nrow = row + delr[i];
-            int ncol = col + delc[i];
-
-            if(nrow>=0 && nrow<grid.size() && ncol>=0 && ncol<grid[0].size() && grid[nrow][ncol]==1){
-                dfs(nrow,ncol,grid);
-            }
+        for(int k=0;k<4;k++){
+            dfs(grid,i+ai[k],j+aj[k],m,n);
         }
     }
-    
-    int numEnclaves(vector<vector<int>>& grid)
-    {
-      int n = grid.size();
-      int m = grid[0].size();
+    int numEnclaves(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
 
-      int ans = 0;
+        for(int i=0;i<m;i++){
+            dfs(grid,i,0,m,n);
+            dfs(grid,i,n-1,m,n);
+        }
+        for(int i=0;i<n;i++){
+            dfs(grid,0,i,m,n);
+            dfs(grid,m-1,i,m,n);
+        }
 
-      for(int i = 0;i<n;i++){
-          for(int j = 0;j<m;j++){
-              if(i==0 || j==0 || i==n-1 || j==m-1){
-                  if(grid[i][j]==1){
-                      dfs(i,j,grid);
-                  }
-              }
-          }
-      }
+        int count = 0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1) count++;
+            }
+        }
 
-      for(int i = 0;i<n;i++){
-          for(int j = 0;j<m;j++){
-              if(grid[i][j]==1)
-              ans++;
-          }
-      }
-
-    return ans;
-    } 
+        return count;
+    }
 };
