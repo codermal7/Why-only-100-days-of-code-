@@ -21,4 +21,5 @@ Thank you for visiting "Why only 100 days of code" repository, and I hope you fi
 - [Leetcode](https://leetcode.com/codermal7/)
 
 
-<img width="100%" alt="image" src="https://user-images.githubusercontent.com/83698322/228757799-c64d0d02-3ac8-4538-9dfd-0ffe381c6097.png">
+<!-- <img width="100%" alt="image" src="https://user-images.githubusercontent.com/83698322/228757799-c64d0d02-3ac8-4538-9dfd-0ffe381c6097.png"> -->
+<img width="100%" alt="image" src="https://user-images.githubusercontent.com/83698322/230729812-ddf356f0-e584-484c-8ab5-811a96258a3e.png">
