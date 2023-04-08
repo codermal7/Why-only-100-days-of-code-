@@ -4,16 +4,17 @@ class Solution:
         :type node: Node
         :rtype: Node
         """
-        oldtonew = {}
-        return self.dfs(node, oldtonew)
-
-    def dfs(self, node, oldtonew):
-        if not node:
+        oldToNew = {}
+        if node is None:
             return None
-        if node in oldtonew:
-            return oldtonew[node]
-        copy = Node(node.val)
-        oldtonew[node] = copy
-        for n in node.neighbors:
-            copy.neighbors.append(self.dfs(n, oldtonew))
-        return copy
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            
+            cloneNode = Node(node.val)
+            oldToNew[node] = cloneNode
+            for n in node.neighbors:
+                cloneNode.neighbors.append(dfs(n))
+            return cloneNode
+        return dfs(node)
+            
