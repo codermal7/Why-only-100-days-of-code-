@@ -15,8 +15,8 @@ public:
         {
             if(!vis[i])
             {
-                dfs(isConnected,i);
                 c++;
+                dfs(isConnected,i);
             }
         }
         return c;
