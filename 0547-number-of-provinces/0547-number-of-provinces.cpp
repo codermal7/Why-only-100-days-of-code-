@@ -77,7 +77,13 @@ public:
     int findCircleNum(vector<vector<int>>& isConnected)
      {
         n = isConnected.size();
-        for(int i = 0;i<n;i++) if(!vis[i]) c=0,dfs(isConnected,i),res++;;
+        for(int i = 0;i<n;i++) 
+        if(!vis[i]) 
+        {
+            c=0;
+            dfs(isConnected,i);
+            res++;
+        }
         return res;   
     }
 };
