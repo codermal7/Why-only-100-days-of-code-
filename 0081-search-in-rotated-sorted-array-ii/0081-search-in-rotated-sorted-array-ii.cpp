@@ -3,7 +3,6 @@
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
-        sort(nums.begin(), nums.end());
         int s=0,e=nums.size()-1,mid;
 
         while(s<=e)
