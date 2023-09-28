@@ -3,11 +3,11 @@
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
-        int s=0,e=nums.size()-1,mid;
+        int s=0,e=nums.size()-1;
 
         while(s<=e)
         {
-            mid=s+((e-s)/2);
+            int mid=s+((e-s)/2);
             if(target==nums[mid])return true;
             if(nums[s]==nums[mid] && nums[mid]==nums[e])
             {
