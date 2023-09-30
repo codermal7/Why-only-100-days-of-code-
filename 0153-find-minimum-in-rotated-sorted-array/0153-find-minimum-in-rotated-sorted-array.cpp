@@ -6,7 +6,11 @@ public:
         while(s<=e)
         {
             int mid=s+((e-s)/2);
-            // if(target==nums[mid])return true;
+            if(nums[s]<nums[e]){
+                if(nums[s]<min)
+                min=nums[s];
+                break;
+            }
         
             //SORTED LEFT HALF
             if(nums[s]<=nums[mid])
