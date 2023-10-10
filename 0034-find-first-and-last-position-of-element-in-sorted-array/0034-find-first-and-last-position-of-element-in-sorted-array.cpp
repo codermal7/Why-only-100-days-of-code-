@@ -1,23 +1,41 @@
 class Solution {
 public:
-   vector<int> searchRange(vector<int>& nums, int target) {
-    int idx1 = lower_bound(nums, target);
-    int idx2 = lower_bound(nums, target+1)-1;
-    if (idx1 < nums.size() && nums[idx1] == target)
-        return {idx1, idx2};
-    else
-        return {-1, -1};
-}
-
-int lower_bound(vector<int>& nums, int target) {
-    int l = 0, r = nums.size()-1;
-    while (l <= r) {
-        int mid = (r-l)/2+l;
-        if (nums[mid] < target)
-            l = mid+1;
-        else
-            r = mid-1;
+    int firstO(vector<int>& nums, int n, int k){
+        int s=0,e=n-1,first=-1;
+        while(s<=e){
+            int mid=(s+e)/2;
+            if(k==nums[mid]){
+                first=mid;
+                e=mid-1;
+            }
+            else if(k<nums[mid])
+            e=mid-1;
+            else
+            s=mid+1;
+        }
+        return first;
     }
-    return l;
-}
+    int lastO(vector<int>& nums, int n, int k){
+        int s=0,e=n-1,last=-1;
+        while(s<=e){
+            int mid=(s+e)/2;
+            if(k==nums[mid]){
+                last=mid;
+                s=mid+1;
+            }
+            else if(k<nums[mid])
+            e=mid-1;
+            else
+            s=mid+1;
+        }
+        return last;
+    }
+    vector<int> searchRange(vector<int>& nums, int k) {
+        int n=nums.size();
+        int first=(firstO(nums,n,k));
+        if(first==-1)
+        return {-1,-1};
+        int last=(lastO(nums,n,k));
+        return {first,last};
+    }
 };
