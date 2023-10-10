@@ -1,21 +1,24 @@
-<h2><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/">144. Binary Tree Preorder Traversal</a></h2><h3>Easy</h3><hr><div><p>Given the <code>root</code> of a binary tree, return <em>the preorder traversal of its nodes' values</em>.</p>
+<h2><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/">144. Binary Tree Preorder Traversal</a></h2><h3>Easy</h3><hr><p>Given the <code>root</code> of a binary tree, return <em>the preorder traversal of its nodes&#39; values</em>.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
-<img alt="" src="https://assets.leetcode.com/uploads/2020/09/15/inorder_1.jpg" style="width: 125px; height: 200px;">
-<pre><strong>Input:</strong> root = [1,null,2,3]
+<img alt="" src="https://assets.leetcode.com/uploads/2020/09/15/inorder_1.jpg" style="width: 125px; height: 200px;" />
+<pre>
+<strong>Input:</strong> root = [1,null,2,3]
 <strong>Output:</strong> [1,2,3]
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> root = []
+<pre>
+<strong>Input:</strong> root = []
 <strong>Output:</strong> []
 </pre>
 
 <p><strong class="example">Example 3:</strong></p>
 
-<pre><strong>Input:</strong> root = [1]
+<pre>
+<strong>Input:</strong> root = [1]
 <strong>Output:</strong> [1]
 </pre>
 
@@ -29,4 +32,3 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?</p>
-</div>
