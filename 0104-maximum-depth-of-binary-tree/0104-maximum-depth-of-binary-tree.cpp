@@ -12,21 +12,32 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        int height=0;
-        if(root==NULL) return height;
-        queue<TreeNode*> q;
-        q.push(root);
-        while(!q.empty())
-        {
-            int s=q.size();
-            for(int i=0;i<s;i++)
-            {
-                TreeNode* node = q.front();q.pop();
-                if(node->left!=NULL) q.push(node->left);
-                if(node->right!=NULL) q.push(node->right);
-            }
-            height++;
-        }
-        return height;
+        // LEVEL ORDER TRAVERSAL
+        // int height=0;
+        // if(root==NULL) return height;
+        // queue<TreeNode*> q;
+        // q.push(root);
+        // while(!q.empty())
+        // {
+        //     int s=q.size();
+        //     for(int i=0;i<s;i++)
+        //     {
+        //         TreeNode* node = q.front();q.pop();
+        //         if(node->left!=NULL) q.push(node->left);
+        //         if(node->right!=NULL) q.push(node->right);
+        //     }
+        //     height++;
+        // }
+        // return height;
+
+        // RECURSIVE
+
+        if(root==NULL)
+        return 0;
+
+        int lh=maxDepth(root->left);
+        int rh=maxDepth(root->right);
+
+        return 1+max(lh,rh);
     }
 };
