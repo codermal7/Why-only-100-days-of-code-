@@ -3,7 +3,6 @@ public:
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
         int n = arr.size();
         vector<int> dp(n + 1, 0);
-
         for (int i = 1; i <= n; i++) {
             int maximum = 0;
             int maxSum = 0;
@@ -13,7 +12,6 @@ public:
             }
             dp[i] = maxSum;
         }
-
         return dp[n];
     }
 };
