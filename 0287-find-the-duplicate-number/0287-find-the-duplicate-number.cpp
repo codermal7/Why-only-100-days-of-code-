@@ -13,7 +13,7 @@ public:
         // }
         // return -1;
         sort(nums.begin(),nums.end());
-        int len = nums.size();
+        int n = nums.size();
         for (int i = 0; i < n - 1; i++) {
             if(nums[i] == nums[i + 1]) 
             {
