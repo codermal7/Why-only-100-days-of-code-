@@ -28,18 +28,23 @@ public:
         // }
         // return -1;
 
-        unordered_map<char, int> count;
-        queue<char> q;
+        std::unordered_map<char, int> frequencyMap;
+        std::queue<std::pair<char, int>> charQueue;
 
-        for (char c : s) {
-            count[c]++;
-            q.push(c);
-
-            while (!q.empty() && count[q.front()] > 1) {
-                q.pop();
-            }
+        for (int i = 0; i < s.size(); i++) {
+            frequencyMap[s[i]]++;
+            charQueue.push(std::make_pair(s[i], i));
         }
 
-        return q.empty() ? -1 : find(s.begin(), s.end(), q.front()) - s.begin();
+        while (!charQueue.empty()) {
+            char currentChar = charQueue.front().first;
+            int currentIndex = charQueue.front().second;
+            if (frequencyMap[currentChar] == 1) {
+                return currentIndex;
+            } else {
+                charQueue.pop();
+            }
+        }
+        return -1;
     }
 };
