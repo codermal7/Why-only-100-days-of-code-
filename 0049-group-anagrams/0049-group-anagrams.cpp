@@ -2,7 +2,7 @@ class Solution {
 public:
     string generateWord(string& word)
     {
-        int arr[26];
+        int arr[26]={0};
         for(char ch:word)
         {
             arr[ch-'a']++;
