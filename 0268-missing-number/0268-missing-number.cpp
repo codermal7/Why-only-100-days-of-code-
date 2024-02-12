@@ -27,12 +27,24 @@ public:
         //     }
         // }
         // return n;
-        int sum=0,n=nums.size() ;
-        int range_sum= n*(n+1)/2;
-        for(int i=0;i<n;i++)
-        {
-            sum+=nums[i];
+        // int sum=0,n=nums.size() ;
+        // int range_sum= n*(n+1)/2;
+        // for(int i=0;i<n;i++)
+        // {
+        //     sum+=nums[i];
+        // }
+        // return (range_sum-sum);
+        int sum1=0;
+        int sum2=0;
+
+        for(int i=0; i<=nums.size(); i++){
+            sum1=sum1+i;
         }
-        return (range_sum-sum);
+
+        for(int i=0; i<nums.size(); i++){
+            sum2=sum2+nums[i];
+        }
+
+        return sum1-sum2;
     }
 };
