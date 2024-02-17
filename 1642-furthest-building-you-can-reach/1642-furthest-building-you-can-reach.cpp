@@ -1,10 +1,11 @@
 class Solution {
 public:
     int furthestBuilding(vector<int>& h, int b, int l) {
-        priority_queue<int> pq;
+        // T.C.=O(nlogn), S.C.=O(n)
         int n=h.size();
         if(n==1)
         return 0;
+        priority_queue<int> pq;  /* PQ takes log n times for all operations */
         int i=0;
         for(;i<n-1;i++)
         {
