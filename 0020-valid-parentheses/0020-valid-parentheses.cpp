@@ -9,7 +9,7 @@ public:
         {
             if((s[i]=='(' || s[i]=='{' || s[i]=='[') && (i<s.size()))
             {
-                st.push(s[0]);
+                st.push(s[i]);
             }
             else if(s[i]==')' || s[i]==']' || s[i]=='}')
             {
