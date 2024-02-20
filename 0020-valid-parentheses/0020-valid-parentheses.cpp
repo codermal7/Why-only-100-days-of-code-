@@ -5,7 +5,7 @@ public:
         return false;
         stack<char> st; int i=1;
         st.push(s[0]);
-        while(!st.empty())
+        while(!st.empty() || i<s.size())
         {
             if((s[i]=='(' || s[i]=='{' || s[i]=='[') && (i<s.size()))
             {
