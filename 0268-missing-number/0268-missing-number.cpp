@@ -48,17 +48,16 @@ public:
         // return sum1-sum2;
 
         int n=nums.size(), c=0;
-        sort(nums.begin(),nums.end());
+        unordered_map<int,bool> mp;
+        for(auto num:nums)
+        {
+            mp[num]=true;
+        }
         for(int i=0;i<n;i++)
         {
-            if(nums[i]==c)
-                c++;
-            else
-            break;
+            if(mp.find(i)==mp.end())
+            return i;
         }
-        return c;
-
-
-
+        return n;
     }
 };
