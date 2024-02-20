@@ -46,18 +46,13 @@ public:
         // }
 
         // return sum1-sum2;
-
-        int n=nums.size(), c=0;
-        unordered_map<int,bool> mp;
-        for(auto num:nums)
+        
+        int n=nums.size();
+        int sum1=0,sum2=(n*(n+1))/2;
+        for(int i=0;i<nums.size();i++)
         {
-            mp[num]=true;
+            sum1+=nums[i];
         }
-        for(int i=0;i<n;i++)
-        {
-            if(mp.find(i)==mp.end())
-            return i;
-        }
-        return n;
+        return sum2-sum1;
     }
 };
