@@ -11,7 +11,7 @@ public:
             {
                 st.push(s[i]);
             }
-            else if(s[i]==')' || s[i]==']' || s[i]=='}')
+            else if((s[i]==')' || s[i]==']' || s[i]=='}') && !st.empty())
             {
                 char ch=st.top();
                 if((ch=='(' && s[i]==')') || (ch=='[' && s[i]==']') || 
