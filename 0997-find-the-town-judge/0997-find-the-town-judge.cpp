@@ -4,6 +4,8 @@ using namespace std;
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
+        if(trust.size()==1)
+        return trust[0][1];
         vector<int> ansvect(n + 1, 0); 
         for (auto it : trust) {
             ansvect[it[0]]--; 
