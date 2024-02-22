@@ -27,24 +27,34 @@
 //         }
 //         return -1;
 //     }
-// };
+// }
 
+#pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
-    int findJudge(int n, vector<vector<int>>& trust) {  
-	 // Arrays to track trust given and received
-        vector<int> trusting(n + 1, 0);   
-        vector<int> trusted(n + 1, 0);     
-        for (auto i : trust) {                    // Count trust relationships
-            trusting[i[0]]++;                    // Increment trust given
-            trusted[i[1]]++;                    // Increment trust received
+    using int2=pair<int, int>;
+    int findJudge(int n, vector<vector<int>>& trust) {
+        vector<int2> degArr(n);
+        for(int i=0; i<n; i++)
+            degArr[i]={i+1, 0};
+        //Initialize once all, not 1 by 1
+        unordered_map<int, int> deg(degArr.begin(), degArr.end());
+        for (auto& e: trust){
+            int a=e[0], b=e[1];
+            if (deg.count(a)) deg.erase(a);//outdeg(a)>0
+            if (deg.count(b)) deg[b]++; //Only consider outdeg(b)=0
         }
-        int ans = -1;                            // Initialize result
-                       
-        for (int i = 1; i <= n; i++)           // Find the person trusted by everyone else
-            if (trusting[i] == 0 && trusted[i] == n - 1){ 
-                ans = i;             // Update result
-            }
-        return ans;                // Return judge's index or -1 if not found
+        for (auto& [i, d] : deg)
+            if (d==n-1) return i;
+        
+        return -1;      
     }
 };
+
+
+auto init = []() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 'c';
+}();
