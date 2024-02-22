@@ -80,7 +80,6 @@
 //     return 'c';
 // }();
 
-
 #pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
@@ -96,7 +95,7 @@ public:
         }
         return -1;
     }
-}
+};
 
 auto init = []() {
     ios::sync_with_stdio(0);
