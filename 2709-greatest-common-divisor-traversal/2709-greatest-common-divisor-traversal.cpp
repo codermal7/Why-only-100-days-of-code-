@@ -1,60 +1,79 @@
 #pragma GCC optimize("O3", "unroll-loops")
+class Graph {
+private:
+    int n;
+    vector<int> parent, compSize;
+
+    int getParent(int x) {
+        if (parent[x] == x) {
+            return x;
+        }
+        return parent[x] = getParent(parent[x]);
+    }
+
+    void unionSet(int x, int y) {
+        int parx = getParent(x), pary = getParent(y);
+        if (parx != pary) {
+            if (compSize[parx] < compSize[pary]) {
+                swap(parx, pary);
+            }
+            parent[pary] = parx;
+            compSize[parx] += compSize[pary];
+        }
+    }
+
+public:
+    Graph(int n = 0) : n(n) {
+        parent.resize(n);
+        compSize.resize(n, 1);
+        iota(parent.begin(), parent.end(), 0);
+    }
+
+    void addEdge(int x, int y) { unionSet(x, y); }
+
+    bool isConnected() { return compSize[getParent(0)] == n; }
+};
+
 class Solution {
-    int getf(vector<int> &f, int x) {
-        return f[x] == x ? x : (f[x] = getf(f, f[x]));
-    }
-    
-    void merge(vector<int> &f, vector<int> &num, int x, int y) {
-        x = getf(f, x);
-        y = getf(f, y);
-        if (x == y) {
-            return;
+private:
+    vector<int> getPrimeFactors(int x) {
+        vector<int> primeFactors;
+        for (int i = 2; i * i <= x; i++) {
+            if (x % i == 0) {
+                primeFactors.push_back(i);
+                while (x % i == 0) {
+                    x /= i;
+                }
+            }
         }
-        if (num[x] < num[y]) {
-            swap(x, y);
+        if (x != 1) {
+            primeFactors.push_back(x);
         }
-        f[y] = x;
-        num[x] += num[y];
+        return primeFactors;
     }
+
 public:
     bool canTraverseAllPairs(vector<int>& nums) {
-        const int n = nums.size();
+        int n = nums.size();
         if (n == 1) {
             return true;
         }
-        vector<int> f(n), num(n);
-        for (int i = 0; i < n; ++i) {
-            f[i] = i;
-            num[i] = 1;
-        }
-        unordered_map<int, int> have;
-        for (int i = 0; i < n; ++i) {
-            int x = nums[i];
-            if (x == 1) {
+        Graph g(n);
+        unordered_map<int, int> seen;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == 1) {
                 return false;
             }
-            for (int d = 2; d * d <= x; ++d) {
-                if (x % d == 0) {
-                    if (have.count(d)) {
-                        merge(f, num, i, have[d]);
-                    } else {
-                        have[d] = i;
-                    }
-                    while (x % d == 0) {
-                        x /= d;
-                    } 
-                }
-            }
-            if (x > 1) {
-                if (have.count(x)) {
-                    merge(f, num, i, have[x]);
+            vector<int> primeFactors = getPrimeFactors(nums[i]);
+            for (int prime : primeFactors) {
+                if (seen.find(prime) != seen.end()) {
+                    g.addEdge(i, seen[prime]);
                 } else {
-                    have[x] = i;
+                    seen[prime] = i;
                 }
             }
         }
-        return num[getf(f, 0)] == n;
-        
+        return g.isConnected();
     }
 };
 auto init = []() {
