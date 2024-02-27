@@ -9,6 +9,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+#pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
@@ -26,3 +27,9 @@ public:
         return 1+max(lh,rh);
     }
 };
+auto init = []() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 'c';
+}();
