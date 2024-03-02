@@ -1,3 +1,4 @@
+#pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
@@ -21,3 +22,9 @@ public:
         return ans;
     }
 };
+auto init = []() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 'c';
+}();
