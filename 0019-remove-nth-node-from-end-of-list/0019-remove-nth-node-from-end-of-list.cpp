@@ -8,6 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+#pragma GCC optimize("O3", "unroll-loops")
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
@@ -33,3 +34,9 @@ public:
         return temp->next;
     }
 };
+auto init = []() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 'c';
+}();
