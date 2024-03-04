@@ -3,14 +3,14 @@
  * @return {Function}
  */
 var once = function(fn) {
-    let usedOnce = false;
-    let result;
+    let notorig = false;
+    let ans;
 
     return function(...args) {
-        if (!usedOnce) {
-        result = fn(...args);
-        usedOnce = true;
-        return result;
+        if (!notorig) {
+        ans = fn(...args);
+        notorig = true;
+        return ans;
         }
         return undefined;
     };
