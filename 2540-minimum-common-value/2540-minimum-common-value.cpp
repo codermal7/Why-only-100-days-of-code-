@@ -1,6 +1,8 @@
 class Solution {
 public:
     int getCommon(vector<int>& nums1, vector<int>& nums2) {
+
+        // 1
         // int n=nums1.size(), nn=nums2.size();
         // for(int i=0;i<n;i++)
         // {
@@ -11,6 +13,21 @@ public:
         //     }
         // }
         // return -1;
+        
+
+
+        // 2
+        // unordered_set<int> set1(nums1.begin(), nums1.end());
+        // for (int num : nums2) {
+        //     if (set1.contains(num)) {
+        //         return num;
+        //     }
+        // }
+        // return -1;
+
+
+
+        // 3
         int i = 0, j = 0;
         while(i < nums1.size() && j < nums2.size())
         {
