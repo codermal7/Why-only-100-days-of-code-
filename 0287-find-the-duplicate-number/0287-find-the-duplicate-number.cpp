@@ -1,17 +1,17 @@
 class Solution {
     public: int findDuplicate(vector < int > & nums) {
         // TC = O(n), SC = O(n);
-        // unordered_map<int,int> mp;
-        // for (int i = 0; i < nums.size(); i++) 
-        // {
-        //     mp[nums[i]]++;
-        // }
-        // for(auto it:mp)
-        // {
-        //     if(it.second>1)
-        //     return it.first;
-        // }
-        // return -1;
+        unordered_map<int,int> mp;
+        for (int i = 0; i < nums.size(); i++) 
+        {
+            mp[nums[i]]++;
+        }
+        for(auto it:mp)
+        {
+            if(it.second>1)
+            return it.first;
+        }
+        return -1;
 
         // TC = O(nlog(n)), SC = O(1);
         // sort(nums.begin(),nums.end());
