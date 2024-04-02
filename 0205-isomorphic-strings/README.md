@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/isomorphic-strings/">205. Isomorphic Strings</a></h2><h3>Easy</h3><hr><div><p>Given two strings <code>s</code> and <code>t</code>, <em>determine if they are isomorphic</em>.</p>
+<h2><a href="https://leetcode.com/problems/isomorphic-strings/?envType=daily-question&envId=2024-04-02">205. Isomorphic Strings</a></h2><h3>Easy</h3><hr><p>Given two strings <code>s</code> and <code>t</code>, <em>determine if they are isomorphic</em>.</p>
 
 <p>Two strings <code>s</code> and <code>t</code> are isomorphic if the characters in <code>s</code> can be replaced to get <code>t</code>.</p>
 
@@ -23,4 +23,3 @@
 	<li><code>t.length == s.length</code></li>
 	<li><code>s</code> and <code>t</code> consist of any valid ascii character.</li>
 </ul>
-</div>
