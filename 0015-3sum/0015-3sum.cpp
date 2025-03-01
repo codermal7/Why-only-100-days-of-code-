@@ -27,7 +27,7 @@ public:
         int n=nums.size();
         if(n<3)
         return {};
-        // result.clear();
+        result.clear();
         sort(nums.begin(),nums.end());
         for(int i=0;i<n;i++)
         {
