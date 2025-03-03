@@ -1,12 +1,10 @@
 class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
-        int n=grid.size();
-        int m=grid[0].size();
-        int cntfresh=0;
-        queue<pair< pair<int,int>, int>> q;
-        // int vis[n][m];
-        vector<vector<int>> vis(n, vector<int>(m, 0));
+        int n=grid.size();int m=grid[0].size();
+        queue <pair < pair <int,int>,int > > q;
+        int vis[n][m];
+        int cnt=0,cnt_fr=0;
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
@@ -16,16 +14,17 @@ public:
                     q.push({{i,j},0});
                     vis[i][j]=2;
                 }
-                else if(grid[i][j]==1)
-                cntfresh++;
-                else
-                vis[i][j]=0;
+                else{
+                    vis[i][j]=0;
+                }
+                if(grid[i][j]==1)
+                {
+                    cnt_fr++;
+                }
             }
         }
-        int tm=0,cnt=0;
-        int drow[4]={-1,0,1,0};
-        int dcol[4]={0,1,0,-1};
-
+        vector<pair<int, int>> dir{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        int tm=0;
         while(!q.empty())
         {
             int r=q.front().first.first;
@@ -33,23 +32,21 @@ public:
             int t=q.front().second;
             tm=max(tm,t);
             q.pop();
-            for(int i=0;i<4;i++)
+            for(auto d : dir) 
             {
-                int nrow=r+drow[i];
-                int ncol=c+dcol[i];
-                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m 
-                && vis[nrow][ncol]!=2 && grid[nrow][ncol]==1)
+                int drow = r + d.first;
+                int dcol = c + d.second;
+                if(drow>=0 && drow<n && dcol>=0 && dcol<m 
+                && grid[drow][dcol]==1 && vis[drow][dcol]==0)
                 {
-                    q.push({{nrow,ncol},t+1});
-                    vis[nrow][ncol]=2;
+                    vis[drow][dcol]=2;
+                    q.push({{drow,dcol},t+1});
                     cnt++;
-                }
+                }                
             }
         }
-
-        if(cnt!=cntfresh)
+        if(cnt!=cnt_fr)
         return -1;
-
         return tm;
     }
 };
