@@ -56,9 +56,9 @@ public:
         // return {a, b};
 
         int a = 0 , b = 0;
-        int n = arr.size();
-        int m = n * n;
-        int totalSum = (m * (m+1))/2;
+        const int n = arr.size();
+        const int m = n * n;
+        const int totalSum = (m * (m+1))/2;
         int sum = 0;
         unordered_set<int> nums;
         for(int i = 0; i < n; i++){
@@ -75,3 +75,11 @@ public:
         return {a,b};
     }
 };
+
+auto init = []()
+{ 
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 'c';
+}();
