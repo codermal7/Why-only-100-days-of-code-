@@ -41,37 +41,26 @@ public:
         // 45;
         // 45-9=36;
 
-        // const int n=arr.size(), n2=n*n;
-        // vector<unsigned char> freq(n2+1, 0);
-        // for(int i=0; i<n; i++){
-        //     for(int j=0; j<n; j++){
-        //         freq[arr[i][j]]++;
-        //     }
-        // }
-        // int a=0, b=0;
-        // for(int i=1; i<=n2; i++){
-        //     if (freq[i]==2) a=i;
-        //     else if (freq[i]==0) b=i;
-        // }
-        // return {a, b};
-
-        int a = 0 , b = 0;
-        int n = arr.size();
-        int m = n * n;
-        int totalSum = (m * (m+1))/2;
-        int sum = 0;
-        unordered_set<int> nums;
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                if (nums.count(arr[i][j])) 
-                a=arr[i][j];
-                else{
-                    nums.insert(arr[i][j]);
-                    sum += arr[i][j];
-                }
+        const int n=arr.size(), n2=n*n;
+        vector<unsigned char> freq(n2+1, 0);
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                freq[arr[i][j]]++;
             }
         }
-        b = totalSum - sum;
-        return {a,b};
+        int a=0, b=0;
+        for(int i=1; i<=n2; i++){
+            if (freq[i]==2) a=i;
+            else if (freq[i]==0) b=i;
+        }
+        return {a, b};
     }
 };
+
+auto init = []()
+{ 
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 'c';
+}();
