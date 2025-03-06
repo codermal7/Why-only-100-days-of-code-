@@ -1,9 +1,9 @@
 class Solution {
 public:
     vector<int> findMissingAndRepeatedValues(vector<vector<int>>& arr) {
-        int n=arr.size(),a,b;
+        int n=arr.size();
         unordered_map<int,int> mp;
-        
+        vector<int> ans;
         for (int i = 1; i <= n*n; i++)
         {
             mp[i] = 0;
@@ -20,13 +20,13 @@ public:
         for(auto it:mp)
         {
             if(it.second>1)
-            a=it.first;
+            ans.push_back(it.first);
         }
         for(auto it:mp)
         {
             if(it.second<1)
-            b=it.first;
+            ans.push_back(it.first)
         }
-        return {a,b};
+        return ans;
     }
 };
